@@ -6,7 +6,7 @@ import pickle
 from apiclient.discovery import build
 from datetime import datetime, timedelta
 from jinja2 import Template
-from newsletter import Section
+from newsbetter import Section
 
 
 class YouTubeSection(Section):
@@ -25,12 +25,14 @@ class YouTubeSection(Section):
             with open(self.cache_file, 'rb+') as f:
                 self.cache = pickle.load(f)
 
-    def html(self):
+    def html(self, recipient):
         return Template("""
         <h2>Videos</h2>
         <ul>
         {% for video in videos %}
-            <li><a href="{{ video['url'] }}">{{ video['title'] }}</a></li>
+            <li>
+                <a href="{{ video['url'] }}">{{ video['title'] }}</a>
+            </li>
         {% endfor %}
         </ul>
         """).render(videos=self.videos())
@@ -83,8 +85,8 @@ class YouTubeSection(Section):
             # Retrieve and return metadata or video
             return {
                 "title": f"{latest_video['snippet']['title']}",
-                "subtitle": channel,
-                "url": f"https://www.youtube.com/embed/{latest_video['contentDetails']['videoId']}"
+                "channel": channel,
+                "url": f"https://www.youtube.com/watch?v={latest_video['contentDetails']['videoId']}"
             }
         else:
             return None

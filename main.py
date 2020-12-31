@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
+import geocoder
 import json
 import yaml
 
 from datetime import datetime
-from newsletter import Newsletter
+from newsbetter import Newsletter
 from sections.header import HeaderSection
 from sections.youtube import YouTubeSection
 
@@ -14,23 +15,23 @@ if __name__ == "__main__":
     with open(CONFIG_FILE) as f:
         config = json.load(f)
 
-    sources_file = config['sources_path']
-    with open(sources_file) as file:
+    with open(config['sources_path']) as file:
         sources = yaml.load(file, Loader=yaml.FullLoader)
 
-    template_file = config['template_path']
-    with open(template_file) as file:
+    with open(config['template_path']) as file:
         html_template = file.read()
 
     api_keys = config['api_keys']
+    location = geocoder.ip('me').city
 
+    # Create newsletter with an HTML template string and sections
     newsletter = Newsletter(html_template, [
-        HeaderSection(api_keys['weather']),
+        HeaderSection(location, api_keys['weather']),
         YouTubeSection(sources['youtube'], api_keys['youtube'])
     ])
 
     # Add subject to email_info
     config['email_info']['subject'] = f"{datetime.now().strftime('%B %d, %Y')}"
 
-    # Send email using email info in config
-    newsletter.send_email(config['email_info'])
+    # Send using email info in config
+    newsletter.send(**config['email_info'])

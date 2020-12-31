@@ -1,4 +1,5 @@
 cache.pkl
 config.json
 sources.yaml
+__pycache__/
 venv/

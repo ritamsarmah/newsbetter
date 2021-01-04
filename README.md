@@ -99,10 +99,10 @@ A newsletter template for a "Daily Briefing" is included in the `example` direct
 
    ```
    rss:
-   	- https://news.ycombinator.com/rss
-   	- https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+       - https://news.ycombinator.com/rss
+       - https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
    youtube:
-   	- TED-Ed
+       - TED-Ed
        - Verge Science
        - Vox
    ```

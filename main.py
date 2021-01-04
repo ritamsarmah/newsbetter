@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from sections.rss import RSSSection
 import geocoder
 import json
 import yaml
@@ -7,6 +8,7 @@ import yaml
 from datetime import datetime
 from newsbetter import Newsletter
 from sections.header import HeaderSection
+from sections.rss import RSSSection
 from sections.youtube import YouTubeSection
 
 CONFIG_FILE = "./config.json"
@@ -27,6 +29,7 @@ if __name__ == "__main__":
     # Create newsletter with an HTML template string and sections
     newsletter = Newsletter(html_template, [
         HeaderSection(location, api_keys['weather']),
+        RSSSection(sources['rss']),
         YouTubeSection(sources['youtube'], api_keys['youtube'])
     ])
 

@@ -79,7 +79,7 @@ A newsletter template for a "Daily Briefing" is included in `main.py` with secti
          "name": "SENDER",
          "password": "PASSWORD",
          "smtp": "SMTP.SERVER",
-         "port": PORT
+         "port": 25
        },
        "recipients": [
          {
@@ -97,12 +97,12 @@ A newsletter template for a "Daily Briefing" is included in `main.py` with secti
 
 2. `sources.yaml` (includes some example sources)
 
-   ```
+   ```yaml
    rss:
-       - https://news.ycombinator.com/rss
-       - https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+     - https://news.ycombinator.com/rss
+     - https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
    youtube:
-       - TED-Ed
-       - Verge Science
-       - Vox
+     - TED-Ed
+     - Verge Science
+     - Vox
    ```

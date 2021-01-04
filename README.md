@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
 ### Sample Newsletter Template
 
-A newsletter template for a "Daily Briefing" is included in the `example` directory with sections that includes weather info, RSS feeds, and latest YouTube channel uploads. Run the example using `main.py` after running `pip install requirements.txt` and creating the following two configuration files in the same directory:
+A newsletter template for a "Daily Briefing" is included in `main.py` with sections including weather info, RSS feeds, and YouTube channels. Run the example using `main.py` after installing the requirements (`pip install -r requirements.txt`) and creating the following two configuration files in the project directory:
 
 1. `config.json`
 

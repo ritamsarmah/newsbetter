@@ -37,7 +37,12 @@ class Newsletter:
                 message = MIMEMultipart('alternative')
                 message['Subject'] = subject
                 message['From'] = f"{sender['name']} <{sender['email']}>"
-                message['To'] = recipient["email"]
+
+                if 'name' in recipient:
+                    message['To'] = f"{recipient['name']} <{recipient['email']}>"
+                else:
+                    message['To'] = recipient['email']
+
                 message.attach(MIMEText(self.render(recipient), "html"))
 
                 server.sendmail(sender['email'],

@@ -73,7 +73,7 @@ class YouTubeSection(Section):
         response = request.execute()
         uploadsPlaylistId = response['items'][0]['contentDetails']['relatedPlaylists']['uploads']
 
-        # Retrieve uploaded ideos
+        # Retrieve uploaded videos
         request = self.youtube.playlistItems().list(
             part="snippet,contentDetails",
             playlistId=uploadsPlaylistId,

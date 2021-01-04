@@ -67,19 +67,19 @@ if __name__ == "__main__":
 
 A newsletter template for a "Daily Briefing" is included in `main.py` with sections including weather info, RSS feeds, and YouTube channels. Run the example using `main.py` after installing the requirements (`pip install -r requirements.txt`) and creating the following two configuration files in the project directory:
 
-1. `config.json`
+1. `config.json` (fill in the necessary info)
 
    ```json
    {
-     "sources_path": "/path/to/sources.yaml",
-     "template_path": "/path/to/template.html",
+     "sources_path": "/PATH/TO/SOURCES.YAML",
+     "template_path": "/PATH/TO/TEMPLATE.HTML",
      "email_info": {
        "sender": {
          "email": "SENDER@EMAIL",
          "name": "SENDER",
          "password": "PASSWORD",
-         "smtp": "smtp.gmail.com",
-         "port": 465
+         "smtp": "SMTP.SERVER",
+         "port": PORT
        },
        "recipients": [
          {
@@ -95,7 +95,7 @@ A newsletter template for a "Daily Briefing" is included in `main.py` with secti
    }
    ```
 
-2. `sources.yaml` (with example sources)
+2. `sources.yaml` (includes some example sources)
 
    ```
    rss:

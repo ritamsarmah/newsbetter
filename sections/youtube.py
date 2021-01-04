@@ -26,16 +26,21 @@ class YouTubeSection(Section):
                 self.cache = pickle.load(f)
 
     def html(self, recipient):
-        return Template("""
-        <h2>Videos</h2>
-        <ul>
-        {% for video in videos %}
-            <li>
-                <a href="{{ video['url'] }}">{{ video['title'] }}</a>
-            </li>
-        {% endfor %}
-        </ul>
-        """).render(videos=self.videos())
+        videos = self.videos()
+
+        if len(videos) == 0:
+            return ""
+        else:
+            return Template("""
+            <h2>Videos</h2>
+            <ul>
+            {% for video in videos %}
+                <li>
+                    <a href="{{ video['url'] }}">{{ video['title'] }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+            """).render(videos=videos)
 
     def videos(self):
         today = datetime.now()

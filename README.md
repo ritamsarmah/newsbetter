@@ -1,6 +1,6 @@
 # Newsbetter
 
-A simple library for generating and sending personalized newsletters using [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) templates.
+A simple library for generating and sending personalized newsletters (or other mass emails) using [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) templates.
 
 ## Getting Started
 
@@ -10,15 +10,15 @@ A simple library for generating and sending personalized newsletters using [Jinj
 ### Sending a Newsletter
 
 ```python
-from newsletter import Newsletter, Section
+from newsbetter import Newsletter, Section
 
 # A section to be included in the newsletter
 class HelloSection(Section):
 	def __init__(self):
-        # "hello" is identifier in template identifier
-		super().__init__("hello")
+        # "hello" defines a unique identifier for Jinja template
+        super().__init__("hello")
 
-	def html(self, recipient):
+    def html(self, recipient):
         return f"<p>Hello, {recipient["name"]}!</p>"
 
 if __name__ == "__main__":
@@ -50,7 +50,7 @@ if __name__ == "__main__":
             {
                 "name": "First Recipient"
                 "email": "recipient1@email.com"
-                # Can also include any additional info here. The dictionary is passed to the html() method for a Section
+                # Can also include any additional info here, passed as dict argument to Section.html()
             },
             {
                 "name": "Second Recipient"
@@ -71,27 +71,27 @@ A newsletter template for a "Daily Briefing" is included in the `example` direct
 
    ```json
    {
-       "sources_path": "/path/to/sources.yaml",
-       "template_path": "/path/to/template.html",
-       "email_info": {
-           "sender": {
-               "email": "SENDER@EMAIL",
-               "name": "SENDER",
-               "password": "PASSWORD",
-               "smtp": "smtp.gmail.com",
-               "port": 465
-           },
-           "recipients": [
-               {
-                   "name": "RECIPIENT NAME",
-                   "email": "RECIPIENT@EMAIL"
-               }
-           ]
+     "sources_path": "/path/to/sources.yaml",
+     "template_path": "/path/to/template.html",
+     "email_info": {
+       "sender": {
+         "email": "SENDER@EMAIL",
+         "name": "SENDER",
+         "password": "PASSWORD",
+         "smtp": "smtp.gmail.com",
+         "port": 465
        },
-       "api_keys": {
-           "youtube": "YOUTUBE_DATA_API_KEY",
-           "weather": "OPEN_WEATHER_API_KEY"
-       }
+       "recipients": [
+         {
+           "name": "RECIPIENT NAME",
+           "email": "RECIPIENT@EMAIL"
+         }
+       ]
+     },
+     "api_keys": {
+       "youtube": "YOUTUBE_DATA_API_KEY",
+       "weather": "OPEN_WEATHER_API_KEY"
+     }
    }
    ```
 

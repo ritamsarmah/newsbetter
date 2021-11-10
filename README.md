@@ -14,7 +14,7 @@ from newsbetter import Newsletter, Section
 
 # A section to be included in the newsletter
 class HelloSection(Section):
-	def __init__(self):
+    def __init__(self):
         # "hello" defines a unique identifier for Jinja template
         super().__init__("hello")
 
